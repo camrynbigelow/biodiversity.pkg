@@ -1,0 +1,22 @@
+Package: bigelow.pkg
+Title: An R package for processing biodiversity data
+Version: 0.1
+Authors@R: c(
+  person(given="Camryn", 
+          family="Bigelow", 
+          role= c("cre", "aut"),
+          email= "camryn.bigelow@selu.edu")
+        )
+Description: This package was intended for processing biodiversity data, specifically for creating rank abundance graphs and comparing biodiversity assemblages with abiotic parameters. This R package will clean your data and will use your data to generate plots, histograms, linear regressions, and ANOVAs. This package was created for a biological data analysis class. 
+License: MIT + file LICENSE
+Depends: 
+  R (>= 2.10)
+Imports: 
+  tidyverse, broom, sf, mapview, googlesheet4, vegan
+RoxygenNote: 7.1.1
+Suggests: 
+  knitr, 
+  rmarkdown
+VignetteBuilder: knitr
+Encoding: UTF-8
+Roxygen: list(markdown=TRUE)

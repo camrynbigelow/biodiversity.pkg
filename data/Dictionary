@@ -1,0 +1,14 @@
+Gutselli Meristics (GM) Dictionary
+
+Lot#: lot number where specimen was collected
+Specimen Number: specimen ID number
+Sex: sex of specimen: m (male), f(female)
+SL: Standard length (in millimeter)
+LL: Lateral line count
+TV: Total length (in millimeters)
+CPD: Caudal peduncle scale count
+Miller's Data: yes or no
+State: state name
+County: county name
+Drainage: drainage name
+Group: group name
