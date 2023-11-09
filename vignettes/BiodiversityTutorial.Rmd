@@ -8,5 +8,17 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r}
+devtools::install_github("camrynbigelow/biodiversity.pkg")
+```
+
+In this tutorial, we will use the invertebrate data collected from Lake Maurepas by our lab's postdoc. This data is not complete.
+
+```{r}
+library(googlesheets4)
+googlesheets4::gs4_deauth()
+invert<-read_sheet("https://docs.google.com/spreadsheets/d/1qF8C3aSGqML05NBuKGDH_ReAo4UITNWAvi0d269KIAs/edit?usp=sharing")
+fake<-read_sheet("https://docs.google.com/spreadsheets/d/1VnkbYtR2x1qKKU8HcksrMJM8SgW641ICu6IL2nSFFOo/edit?usp=sharing")
+```
 
 This package was intended for processing biodiversity data, specifically for creating rank abundance graphs and comparing biodiversity assemblages with abiotic parameters using genetic data from environmental DNA. This R package will clean your data and will use your data to generate NMDS plots, rank abundance graphs, ANOVAs, and maps. This package was created for a biological data analysis class.
