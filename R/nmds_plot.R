@@ -2,21 +2,21 @@
 #'
 #'Creates a ggplot based on non-metric multidimensional scale to show similarity between groups. 
 #'@param data The data you cleaned (dataframe)
-#'@param species.name Your species name column
+#'@param Species Your species name column
 #'@param y parameter or sector
 #'@return plot Your nmds plot using ggplot
 #'
 #'@export
 
-nmds_plot<-function(data, species.name, y){
+nmds_plot<-function(data, Species, y){
   speciesCount <- data %>% 
-  select(species.name, count, {{y}}) %>% 
-  group_by(species.name, {{y}}) %>% 
+  select(Species, count, {{y}}) %>% 
+  group_by(Species, {{y}}) %>% 
   summarize(totalCount = sum(count)) %>%
-  spread(species.name, totalCount, fill = 0) 
+  spread(Species, totalCount, fill = 0) 
 speciesMatrix <- data.matrix(speciesCount, rownames.force = unique(paste(data,y)))
 nmds_plot <- metaMDS(speciesMatrix)
-data.scores = as.data.frame(scores(nmds_plot$y))
+data.scores = as.data.frame(scores(paste(nmds_plot,y)))
 names <- data.scores  %>%
   mutate(Location  = paste(speciesCount, {{y}}))
 plot <- ggplot(names, aes(x = NMDS1, y = NMDS2)) +
