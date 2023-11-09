@@ -1,0 +1,10 @@
+Fake Data (fake) Dictionary
+month: Month collected
+day: day collected
+year: year collected
+sector: one of the six sectors in Lake Maurepas
+latitude
+longitude
+species.name: common name
+count
+salinity.ppt: salinity in parts per thousand

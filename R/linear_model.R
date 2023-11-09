@@ -9,15 +9,12 @@
 #'@export
 
 linear_model<- function(x, y, data){
-  model_fit<-lm({{y}}~{{x}}, data) %>% 
-    summary<-summary(model_fit)
-    return(summary)
+  model_fit<-lm(paste(y, "~", x), data=data)
+    summ<-summary(model_fit)
+    return(summ)
 }
 
-#linear_model(data=surveys, x=sex, y=weight)
-#^ object not found
+#model_fit<-lm(paste(count~ salinity), data=fake)
+#summ<-summary(model_fit)
 
-#model_fit<-lm(CPD~Sex, data=GM)
-
-#summary(model_fit)
 
