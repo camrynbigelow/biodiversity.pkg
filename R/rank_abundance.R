@@ -18,6 +18,5 @@ rank_abundance<-function(data, x, xlabel){
   return(rank_plot)
 }
 
-
-
+#function works, need test!
 
