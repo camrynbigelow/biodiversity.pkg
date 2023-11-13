@@ -22,3 +22,65 @@ fake<-read_sheet("https://docs.google.com/spreadsheets/d/1VnkbYtR2x1qKKU8HcksrMJ
 ```
 
 This package was intended for processing biodiversity data, specifically for creating rank abundance graphs and comparing biodiversity assemblages with abiotic parameters using genetic data from environmental DNA. This R package will clean your data and will use your data to generate NMDS plots, rank abundance graphs, ANOVAs, and maps. This package was created for a biological data analysis class.
+
+##Function 1 (clean your data): remove_nas
+#This function will clean your data by removing NAs. Make sure to save your clean data as a variable.
+```{r}
+invert<-remove_nas(invert)
+```
+
+##Function 2 (plot your data): basic_plot
+#This function allows you to view your data in a scatterplot
+#In this example, I will use the invert dataset to view a scatterplot of Species and Sector
+```{r}
+basic_plot(invert, Species, Sector)
+```
+#The plot will save and you can view it under plots tab
+#If your data is not a dataset, like a tibble, you will get a warning message.
+```{r}
+wrong<-invert$Sector
+basic_plot(wrong, Species, Sector)
+```
+#[1] "data is not a data frame!"
+
+##Function 3 (statistical function): linear_model
+#This function will allow you to test if your dependent variable is predicted by your independent variable. A p-value of <0.05 is statistically significant.
+```{r}
+linear_model(salnity, y, data)
+```
+
+#Call:
+#lm(formula = count ~ salinity.ppt, data = fake)
+
+#Residuals:
+#    Min      1Q  Median      3Q     Max 
+#-10.671  -3.943  -2.073   4.005  11.825 
+#
+#Coefficients:
+#             Estimate Std. Error t value Pr(>|t|)  
+#(Intercept)     8.258      4.242   1.947   0.0802 .
+#salinity.ppt    2.391      2.683   0.891   0.3936  
+#---
+#Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#
+#Residual standard error: 7.56 on 10 degrees of freedom
+#Multiple R-squared:  0.07362,	Adjusted R-squared:  -0.01901 
+#F-statistic: 0.7947 on 1 and 10 DF,  p-value: 0.3936
+
+##Function 4 (manipulate, subset, or transform data) : nmds_plot
+#This function will generate a non-metric multidimensional scale plot using species and sector data. 
+```{r}
+nmds_plot(data, Species, Sector)
+```
+
+##Function 5 (dissertation): rank_abundance
+#This function will rank our abundances in descending order on a bar plot. Make sure you put your "xlabel" in quotations.
+```{r}
+rank_abundance(invert, Species, "Species")
+```
+
+##Function 6 (dissertation): mapping_abundance
+#This function will let us create an interactive map of abundances. In this example, we will be using species data collected from Lake Maurepas. Make sure you convert sector from numeric to character in order for it to be discrete.
+```{r}
+mapping_abundance(invert, Species, Lat, Long, Sector)
+```
