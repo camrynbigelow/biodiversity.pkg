@@ -9,6 +9,13 @@
 #' @export
 
 remove_nas<-function(data){
-  clean<-na.omit(data)
-  return(clean)
+  clean<-data %>% 
+    na.omit(data)
+  if(is.na(clean)==FALSE){
+    return(clean)
+    } else {
+  print("NAs remain!")}
+  }
 }
+
+#Error in if (is.na(clean) == FALSE) { : the condition has length > 1
