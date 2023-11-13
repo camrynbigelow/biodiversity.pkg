@@ -9,12 +9,16 @@
 #'@export
 
 linear_model<- function(x, y, data){
-  model_fit<-lm(paste(y, "~", x), data=data)
+  model_fit<-lm(eval(as.name(y)) ~ eval(as.name(x)), data=data)
     summ<-summary(model_fit)
+    if (!is.numeric(x))
+      {print("Predictor value is not numeric!")
+    }else{
     return(summ)
+    }
 }
 
-#model_fit<-lm(paste(count~ salinity), data=fake)
+model_fit<-lm(paste(count~ salinity), data=fake)
 #summ<-summary(model_fit)
 
-
+#y parameter not found!
