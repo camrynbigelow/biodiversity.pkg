@@ -11,16 +11,16 @@
 #' @export
 
 mapping_abundance<-function(data, Species, Lat, Long, Sector){
-  speciesCount<-fake %>%
-    select(Species, count, Sector)%>%
+  speciesCount<-data %>%
+    select(Species, Count, Sector)%>%
     group_by(Species, Sector) %>% 
-    summarize(totalCount=sum(count)) 
+    summarize(totalCount=sum(Count)) 
   ggplot(data, aes(x=Long, y=Lat, color = Sector))+
     geom_point()+
     theme_bw()
-  deployCount <- fake %>% dplyr::select(Species, count, Long, Lat, Sector) %>% 
+  deployCount <- data %>% dplyr::select(Species, Count, Long, Lat, Sector) %>% 
     group_by(Long, Lat, Sector) %>% 
-    summarize(totalCount = sum(count))
+    summarize(totalCount = sum(Count))
   
   ggplot(deployCount)+
     geom_point(aes(x=Long, y=latitiude, size=totalCount, color=Sector), alpha=0.5)+
@@ -32,7 +32,7 @@ mapping_abundance<-function(data, Species, Lat, Long, Sector){
   
   return(abundanceMap)
 }
-#mapping_abundance(fake, Species, Lat, Long, Sector)
+mapping_abundance(invert, Species, Lat, Long, Sector)
 
 #Need help making Sector a character
-
+#would be nice to make sector the test
