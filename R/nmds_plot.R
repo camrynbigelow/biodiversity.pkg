@@ -3,38 +3,26 @@
 #'Creates a ggplot based on non-metric multidimensional scale to show similarity between groups. 
 #'@param data The data you cleaned (dataframe)
 #'@param Species Your species name column
-#'@param y parameter or sector
+#'@param Sector Your sector column
 #'@return plot Your nmds plot using ggplot
 #'
 #'@export
 
-nmds_plot<-function(data, Species, y){
+nmds_plot<-function(data, Species, Sector){
   speciesCount <- data %>% 
-  select(Species, count, {{y}}) %>% 
-  group_by(Species, {{y}}) %>% 
-  summarize(totalCount = sum(count)) %>%
-  spread(Species, totalCount, fill = 0) 
-speciesMatrix <- data.matrix(speciesCount, rownames.force = unique(paste(data,y)))
-nmds_plot <- metaMDS(speciesMatrix)
-data.scores = as.data.frame(scores(paste(nmds_plot,y)))
-names <- data.scores  %>%
-  mutate(Location  = paste(speciesCount, {{y}}))
-plot <- ggplot(names, aes(x = NMDS1, y = NMDS2)) +
-  geom_point(size = 4, aes(colour = Location))
-return(plot)
-  }
+    select(Species, Count, Sector) %>% 
+    group_by(Species, Sector) %>% 
+    summarize(totalCount = sum(Count)) %>%
+    spread(Species, totalCount, fill = 0) 
+  speciesMatrix <- data.matrix(speciesCount, rownames.force = unique(data$Sector))
+  NMDS <- metaMDS(speciesMatrix)
+  data.scores = as.data.frame(scores(NMDS)$sites)
+  names <- data.scores  %>%
+    mutate(Location  = speciesCount$Sector)
+  plot <- ggplot(names, aes(x = NMDS1, y = NMDS2)) +
+    geom_point(size = 4, aes(colour = Location))
+  return(plot)
+}
 
-
-#Test- worked!
-#speciesCount <- cam %>% 
- # select(Common.Name, Count, Subproject) %>% 
-  #group_by(Common.Name, Subproject) %>% 
-  #summarize(totalCount = sum(Count)) %>%
-  #spread(Common.Name, totalCount, fill = 0) 
-#speciesMatrix <- data.matrix(speciesCount, rownames.force = unique(cam$Subproject))
-#eDNA_NMDS <- metaMDS(speciesMatrix)
-#data.scores = as.data.frame(scores(eDNA_NMDS)$sites)
-#names <- data.scores  %>%
-#  mutate(Location  = speciesCount$Subproject)
-#plot <- ggplot(names, aes(x = NMDS1, y = NMDS2)) +
- # geom_point(size = 4, aes(colour = Location))
+#nmds works, but gives warning about insufficient data
+#can force it outside of function but not within, ie got a plot during test
