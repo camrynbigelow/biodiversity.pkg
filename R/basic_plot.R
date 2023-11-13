@@ -9,8 +9,13 @@
 #'@export
 
 basic_plot<-function(data, x, y){
-  myplot<-ggplot(data, aes({{x}}, {{y}}, color={{x}}))+geom_point()+geom_jitter()
-  ggsave("basic_plot.png", myplot)
-  return(myplot)
+  if (is.data.frame(data)==TRUE){
+    myplot<-ggplot(data, aes({{x}}, {{y}}, color={{x}}))+geom_point()+geom_jitter()
+      ggsave("basic_plot.png", myplot)
+      return(myplot) 
+  } else {
+    print("Data is not a data frame!")
+  }
 }
+
 
