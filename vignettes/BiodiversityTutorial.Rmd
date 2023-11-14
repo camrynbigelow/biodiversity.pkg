@@ -10,11 +10,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r}
 devtools::install_github("camrynbigelow/biodiversity.pkg")
+library(bigelow.pkg)
+library(tidyverse)
 ```
 
 In this tutorial, we will use the invertebrate data collected from Lake Maurepas by our lab's postdoc. This data is not complete.
 
-```{r}
+```{r, eval=FALSE}
+#install.packages("googlesheets4")
 library(googlesheets4)
 googlesheets4::gs4_deauth()
 invert<-read_sheet("https://docs.google.com/spreadsheets/d/1qF8C3aSGqML05NBuKGDH_ReAo4UITNWAvi0d269KIAs/edit?usp=sharing")
@@ -46,7 +49,7 @@ basic_plot(wrong, Species, Sector)
 ##Function 3 (statistical function): linear_model
 #This function will allow you to test if your dependent variable is predicted by your independent variable. A p-value of <0.05 is statistically significant.
 ```{r}
-linear_model(salnity, y, data)
+linear_model(salnity.ppt, y, data)
 ```
 
 #Call:

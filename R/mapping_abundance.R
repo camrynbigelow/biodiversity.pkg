@@ -1,7 +1,7 @@
 #' Mapping abundance function
 #' 
 #' Plot abundances in a map. Need the following packages: tidyverse, sf, mapview, and vegan
-#' @param data
+#' @param data Dataframe you cleaned
 #' @param Species The species or common name column
 #' @param Lat The column with Lat coordinates
 #' @param Long The column with Long coordinates
@@ -11,8 +11,8 @@
 #' @export
 
 mapping_abundance<-function(data, Species, Lat, Long, Sector){
-  speciesCount<-data %>%
-    select(Species, Count, Sector)%>%
+   speciesCount<-data %>%
+    select(Species, Count, as.character(Sector))%>%
     group_by(Species, Sector) %>% 
     summarize(totalCount=sum(Count)) 
   ggplot(data, aes(x=Long, y=Lat, color = Sector))+
@@ -32,7 +32,7 @@ mapping_abundance<-function(data, Species, Lat, Long, Sector){
   
   return(abundanceMap)
 }
-mapping_abundance(invert, Species, Lat, Long, Sector)
+#mapping_abundance(invert, Species, Lat, Long, Sector)
 
 #Need help making Sector a character
 #would be nice to make sector the test

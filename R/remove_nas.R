@@ -11,11 +11,7 @@
 remove_nas<-function(data){
   clean<-data %>% 
     na.omit(data)
-  if(is.na(clean)==FALSE){
-    return(clean)
-    } else {
-  print("NAs remain!")}
-  }
+  return(clean)
 }
 
-#Error in if (is.na(clean) == FALSE) { : the condition has length > 1
+#use mean to test clean
