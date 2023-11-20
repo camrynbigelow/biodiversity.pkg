@@ -8,15 +8,13 @@
 #'
 #'@export
 
-linear_model<-function(data, dependent, independent_cols){
- data %>% 
-  if(is.numeric({{dependent}})){
-    summ<- data %>% 
-      select(a=quo_name(dependent), starts_with(independent_cols)) %>% 
-      lm(a~., data=.) %>% 
-      summary()
-    return(summ)
- } else {
-   print("Dependent variable needs to be numeric!")
- }
+linear_model<-function(data, dependent, independent){
+  if(!is.numeric(data[[dependent]])){
+    print("Dependent variable is not numeric")
+    return(NULL)
+  } else {
+    formula<-paste(dependent, "~", independent)
+    model_fit<-lm(formula, data=data)
+    return(summary(model_fit))
+  }
 }
