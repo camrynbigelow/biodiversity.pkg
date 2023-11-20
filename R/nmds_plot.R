@@ -9,6 +9,10 @@
 #'@export
 
 nmds_plot<-function(data, Species, Sector){
+  if(!is.numeric(data$Sector)){
+    print("Sector is not numeric")
+    return(NULL)
+  } else {
   speciesCount <- data %>% 
     select(Species, Count, Sector) %>% 
     group_by(Species, Sector) %>% 
@@ -22,7 +26,6 @@ nmds_plot<-function(data, Species, Sector){
   plot <- ggplot(names, aes(x = NMDS1, y = NMDS2)) +
     geom_point(size = 4, aes(colour = Location))
   return(plot)
+  }
 }
 
-#nmds works, but gives warning about insufficient data
-#can force it outside of function but not within, ie got a plot during test
