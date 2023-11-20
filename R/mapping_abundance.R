@@ -11,8 +11,14 @@
 #' @export
 
 mapping_abundance<-function(data, Species, Lat, Long, Sector){
-   speciesCount<-data %>%
-    select(Species, Count, as.character(Sector))%>%
+  if(!is.numeric(data$Sector)){
+    print("Sector is not numeric")
+    return(NULL)
+  } else {
+  speciesCount<-data %>%
+    select(Species, Count, Sector)%>%
+    mutate(Sector = as.character(Sector))
+  speciesCount %>% 
     group_by(Species, Sector) %>% 
     summarize(totalCount=sum(Count)) 
   ggplot(data, aes(x=Long, y=Lat, color = Sector))+
@@ -23,7 +29,7 @@ mapping_abundance<-function(data, Species, Lat, Long, Sector){
     summarize(totalCount = sum(Count))
   
   ggplot(deployCount)+
-    geom_point(aes(x=Long, y=latitiude, size=totalCount, color=Sector), alpha=0.5)+
+    geom_point(aes(x=Long, y=latitiude, size=totalCount, color=factor(Sector)), alpha=0.5)+
     theme_bw()
   
   deployCount_sf <- deployCount %>% st_as_sf(coords = c("Long", "Lat"), crs=4326)
@@ -31,8 +37,7 @@ mapping_abundance<-function(data, Species, Lat, Long, Sector){
   abundanceMap <- mapview(deployCount_sf, zcol="Sector", cex="totalCount", layer.name = "Sector Name")
   
   return(abundanceMap)
+  }
 }
-#mapping_abundance(invert, Species, Lat, Long, Sector)
 
-#Need help making Sector a character
-#would be nice to make sector the test
+
