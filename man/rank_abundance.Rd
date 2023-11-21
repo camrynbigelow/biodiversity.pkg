@@ -9,7 +9,7 @@ rank_abundance(data, x, xlabel)
 \arguments{
 \item{data}{The dataset you read in (dataframe)}
 
-\item{x}{The rank of organisms you want to count. Default is phylum. (category)}
+\item{x}{The rank of organisms you want to count. (Species column)}
 
 \item{xlabel}{Name of x-axis label, should be the same as x. Add quotations (String)}
 }

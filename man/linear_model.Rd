@@ -4,7 +4,7 @@
 \alias{linear_model}
 \title{Create a linear model regression summary for your data.}
 \usage{
-linear_model(data, dependent, independent_cols)
+linear_model(data, dependent, independent)
 }
 \arguments{
 \item{data}{The dataset you read in (dataframe)}
