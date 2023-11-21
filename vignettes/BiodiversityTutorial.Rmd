@@ -8,7 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-```{r}
+
+```{r, eval=FALSE}
 devtools::install_github("camrynbigelow/biodiversity.pkg")
 library(bigelow.pkg)
 library(tidyverse)
@@ -29,6 +30,10 @@ This package was intended for processing biodiversity data, specifically for cre
 ##Function 1 (clean your data): remove_nas
 #This function will clean your data by removing NAs. Make sure to save your clean data as a variable.
 ```{r}
+library(bigelow.pkg)
+library(tidyverse)
+invert<-read_csv("../data/invert_data.csv")
+
 invert<-remove_nas(invert)
 ```
 
@@ -44,7 +49,8 @@ basic_plot(invert, Species, Sector)
 ##Function 3 (statistical function): linear_model
 #This function will allow you to test if your dependent variable is predicted by your independent variable. A p-value of <0.05 is statistically significant.
 ```{r}
-linear_model(fake, count, salinity.ppt)
+fake<-read_csv("../data/fake_data.csv")
+linear_model(fake, "count", "salinity.ppt")
 ```
 
 
@@ -52,7 +58,7 @@ linear_model(fake, count, salinity.ppt)
 ##Function 4 (manipulate, subset, or transform data) : nmds_plot
 #This function will generate a non-metric multidimensional scale plot using species and sector data. 
 ```{r}
-nmds_plot(data, Species, Sector)
+nmds_plot(invert, Species, Sector)
 ```
 
 ##Function 5 (dissertation): rank_abundance
