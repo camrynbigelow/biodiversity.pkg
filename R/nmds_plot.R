@@ -23,19 +23,5 @@ nmds_plot<-function(data, Species, Sector){
   }
 }
 
-
-    speciesCount <- invert %>% 
-      select(Species, Count, Sector) %>% 
-      group_by(Species, Sector) %>% 
-      summarize(totalCount = sum(Count)) %>%
-      spread(Species, totalCount, fill = 0) 
-    speciesMatrix <- data.matrix(speciesCount, rownames.force = unique(invert$Sector))
-    NMDS <- metaMDS(speciesMatrix)
-    data.scores = as.data.frame(scores(NMDS)$sites)
-    names <- data.scores  %>%
-      mutate(Location  = speciesCount$Sector)
-    plot <- ggplot(names, aes(x = NMDS1, y = NMDS2)) +
-      geom_point(size = 4, aes(colour = Location))
-
   
 
