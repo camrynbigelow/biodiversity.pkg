@@ -39,36 +39,15 @@ invert<-remove_nas(invert)
 basic_plot(invert, Species, Sector)
 ```
 #The plot will save and you can view it under plots tab
-#If your data is not a dataset, like a tibble, you will get a warning message.
-```{r}
-wrong<-invert$Sector
-basic_plot(wrong, Species, Sector)
-```
-#[1] "data is not a data frame!"
+
 
 ##Function 3 (statistical function): linear_model
 #This function will allow you to test if your dependent variable is predicted by your independent variable. A p-value of <0.05 is statistically significant.
 ```{r}
-linear_model(salnity.ppt, y, data)
+linear_model(fake, count, salinity.ppt)
 ```
 
-#Call:
-#lm(formula = count ~ salinity.ppt, data = fake)
 
-#Residuals:
-#    Min      1Q  Median      3Q     Max 
-#-10.671  -3.943  -2.073   4.005  11.825 
-#
-#Coefficients:
-#             Estimate Std. Error t value Pr(>|t|)  
-#(Intercept)     8.258      4.242   1.947   0.0802 .
-#salinity.ppt    2.391      2.683   0.891   0.3936  
-#---
-#Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-#
-#Residual standard error: 7.56 on 10 degrees of freedom
-#Multiple R-squared:  0.07362,	Adjusted R-squared:  -0.01901 
-#F-statistic: 0.7947 on 1 and 10 DF,  p-value: 0.3936
 
 ##Function 4 (manipulate, subset, or transform data) : nmds_plot
 #This function will generate a non-metric multidimensional scale plot using species and sector data. 
