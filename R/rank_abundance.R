@@ -10,10 +10,9 @@
 #'@export
 
 rank_abundance<-function(data, x, xlabel){
-  if(!startsWith(xlabel, " ")){
-   print("Use quotation marks!")
-    return(NULL)
-}else{
+  if(!is.numeric(data$Count)){
+    print("Count is not numeric")
+  } else {
   sorted<-data %>% 
   count ({{x}}) %>% 
   arrange(desc(n))
@@ -21,9 +20,5 @@ rank_abundance<-function(data, x, xlabel){
  rank_plot<-rank_plot+labs(x=xlabel, y="Count", title="Rank Abundance")
  return(rank_plot)
 }
-   }
+}
 
-#function works, need test!
-#want to make a message that says "put xlabel in quotations"
-
-rank_abundance(invert, Species, "Species")
