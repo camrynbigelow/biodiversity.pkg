@@ -32,6 +32,7 @@ This package was intended for processing biodiversity data, specifically for cre
 ```{r}
 library(bigelow.pkg)
 library(tidyverse)
+library(magrittr)
 invert<-read_csv("../data/invert_data.csv")
 
 invert<-remove_nas(invert)
@@ -56,8 +57,9 @@ linear_model(fake, "count", "salinity.ppt")
 
 
 ##Function 4 (manipulate, subset, or transform data) : nmds_plot
-#This function will generate a non-metric multidimensional scale plot using species and sector data. 
+#This function will prepare your data for a non-metric multidimensional scale plot. 
 ```{r}
+library(vegan)
 nmds_plot(invert, Species, Sector)
 ```
 
