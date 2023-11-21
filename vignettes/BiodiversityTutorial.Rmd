@@ -25,7 +25,7 @@ invert<-read_sheet("https://docs.google.com/spreadsheets/d/1qF8C3aSGqML05NBuKGDH
 fake<-read_sheet("https://docs.google.com/spreadsheets/d/1VnkbYtR2x1qKKU8HcksrMJM8SgW641ICu6IL2nSFFOo/edit?usp=sharing")
 ```
 
-This package was intended for processing biodiversity data, specifically for creating rank abundance graphs and comparing biodiversity assemblages with abiotic parameters using genetic data from environmental DNA. This R package will clean your data and will use your data to generate NMDS plots, rank abundance graphs, ANOVAs, and maps. This package was created for a biological data analysis class.
+This package was intended for processing biodiversity data, specifically for creating rank abundance graphs and comparing biodiversity assemblages with abiotic parameters using genetic data from environmental DNA. This R package will clean your data and will use your data to generate NMDS plots, rank abundance graphs, and abundance maps. This package was created for a biological data analysis class.
 
 ##Function 1 (clean your data): remove_nas
 #This function will clean your data by removing NAs. Make sure to save your clean data as a variable.
@@ -60,6 +60,7 @@ linear_model(fake, "count", "salinity.ppt")
 ```{r}
 nmds_plot(invert, Species, Sector)
 ```
+
 
 ##Function 5 (dissertation): rank_abundance
 #This function will rank our abundances in descending order on a bar plot. Make sure you put your "xlabel" in quotations.
