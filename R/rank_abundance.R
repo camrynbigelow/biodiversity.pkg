@@ -3,25 +3,27 @@
 #'Use your data that you read in and the phylogenetic rank you want to count.
 #'
 #'@param data The dataset you read in (dataframe)
-#'@param x The rank of organisms you want to count. Default is phylum. (category)
+#'@param x The rank of organisms you want to count. (Species column)
 #'@param xlabel Name of x-axis label, should be the same as x. Add quotations (String)
 #'@return rank_plot The rank abundance plot (bar plot)
 #'
 #'@export
 
 rank_abundance<-function(data, x, xlabel){
+  if(!startsWith(xlabel, " ")){
+   print("Use quotation marks!")
+    return(NULL)
+}else{
   sorted<-data %>% 
   count ({{x}}) %>% 
   arrange(desc(n))
  rank_plot<-ggplot(data=sorted, mapping=aes(x= fct_reorder({{x}},n, desc), y = n))+geom_col()
  rank_plot<-rank_plot+labs(x=xlabel, y="Count", title="Rank Abundance")
- if (!is.string(xlabel)){
-   print("Put xlabel in quotations!")
- } else {
-   return(rank_plot)
- }
+ return(rank_plot)
 }
+   }
 
 #function works, need test!
 #want to make a message that says "put xlabel in quotations"
 
+rank_abundance(invert, Species, "Species")
