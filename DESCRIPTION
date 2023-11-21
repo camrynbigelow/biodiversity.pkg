@@ -7,7 +7,7 @@ Authors@R: c(
           role= c("cre", "aut"),
           email= "camryn.bigelow@selu.edu")
         )
-Description: This package was intended for processing biodiversity data, specifically for creating rank abundance graphs and comparing biodiversity assemblages with abiotic parameters. This R package will clean your data and will use your data to generate plots, histograms, linear regressions, and ANOVAs. This package was created for a biological data analysis class. 
+Description: This package was intended for processing biodiversity data, specifically for creating rank abundance graphs and comparing biodiversity assemblages with abiotic parameters using genetic data from environmental DNA. This R package will clean your data and will use your data to generate NMDS plots, rank abundance graphs, and abundance maps. This package was created for a biological data analysis class.
 License: MIT + file LICENSE
 Depends: 
   R (>= 2.10)
