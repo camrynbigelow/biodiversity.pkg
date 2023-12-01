@@ -73,5 +73,7 @@ rank_abundance(invert, Species, "Species")
 ##Function 6 (dissertation): mapping_abundance
 #This function will let us create an interactive map of abundances. In this example, we will be using species data collected from Lake Maurepas. Make sure you convert sector from numeric to character in order for it to be discrete.
 ```{r}
+library(sf)
+library(mapview)
 mapping_abundance(invert, Species, Lat, Long, Sector)
 ```
